@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 class Wallet extends Component{
   constructor(props){
@@ -7,13 +8,13 @@ class Wallet extends Component{
   }
   render(){
     return (
-      <View>
+      <SafeAreaView>
         <Text> transfer </Text>
         <Button
-          title="Go to Accounts"
-          onPress={() => this.props.navigation.navigate('Accounts')}
+          title="Go to ListAccounts"
+          onPress={() => this.props.navigation.navigate('ListAccounts')}
         />
-      </View>
+      </SafeAreaView>
     )
   }
 }

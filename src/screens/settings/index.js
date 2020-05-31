@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-class listSettins extends Component{
+class ListSettings extends Component{
   render(){
     return (
-      <View>
+      <SafeAreaView>
         <Text> listSettins </Text>
-      </View>
+      </SafeAreaView>
     )
   }
 }
 
-export default listSettins
+export default ListSettings

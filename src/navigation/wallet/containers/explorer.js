@@ -9,7 +9,7 @@ import ListExplorer from './../../../screens/explorer'
 function Explorer() {
   return (
     <Stack.Navigator initialRouteName="listExplorer">
-      <Stack.Screen name="Explorer" component={ListExplorer} />
+      <Stack.Screen options={{ headerShown: false }} name="Explorer" component={ListExplorer} />
     </Stack.Navigator>
   )
 }

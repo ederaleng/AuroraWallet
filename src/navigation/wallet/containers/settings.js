@@ -9,7 +9,7 @@ import ListSettings from './../../../screens/settings'
 function Settings() {
   return (
     <Stack.Navigator initialRouteName="ListAccounts">
-      <Stack.Screen name="settings" component={ListSettings} />
+      <Stack.Screen options={{ headerShown: false }} name="settings" component={ListSettings} />
     </Stack.Navigator>
   )
 }
