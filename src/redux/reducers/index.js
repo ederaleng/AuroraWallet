@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import App from './app'
+import app from './app'
+import accounts from './accounts'
 
 export default combineReducers({
-  App
+  app,
+  accounts
 });

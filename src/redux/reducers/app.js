@@ -1,6 +1,6 @@
-const initialBooks = {};
+const initialApp = {};
 
-const appReducer = (state = initialBooks, action) => {
+const appReducer = (state = initialApp, action) => {
   switch (action.type) {
     default:
       return state;
