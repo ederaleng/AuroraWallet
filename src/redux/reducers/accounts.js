@@ -3,8 +3,8 @@ import { SET_CURRENT_ACCOUNT, SET_LIST_ACCOUNTS } from './../constants'
 const initialAccounts = {
   account: null,
   listAccounts: [
-    "ederaleng",
-    "giveaway.tera"
+    { account: "ederaleng" },
+    { account: "giveaway.tera" }
   ]
 };
 
