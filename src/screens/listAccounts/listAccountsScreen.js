@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { FlatList, View, Image, Text, TouchableWithoutFeedback } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './listAccountsStyles'
 import { connect } from 'react-redux'
 import { setCurrentAccount } from './../../redux/actions/accounts'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ListAccounts extends Component{
   constructor(props){
@@ -18,6 +19,14 @@ class ListAccounts extends Component{
   render(){
     return (
       <SafeAreaView>
+
+        <View style={styles.containerChain}>
+          <View style={styles.containerNameChain}>
+            <Image style={styles.iconChain} source={require('./../../assets/chain/hive.png')} />
+            <Text style={{ marginLeft: 6 }} > Hive accounts </Text>
+          </View>
+          <MaterialCommunityIcons name="account-plus" color="#212529" size={25} />
+        </View>
 
         <FlatList
           data={this.props.listAccounts}

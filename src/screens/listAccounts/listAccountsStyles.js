@@ -1,6 +1,22 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
+  iconChain: {
+    width: 35,
+    height: 35
+  },
+  containerChain: {
+    margin: 15,
+    marginBottom: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  containerNameChain: {
+    fontSize: 20,
+    flexDirection: "row",
+    alignItems: "center"
+  },
   containerAccount: {
     margin: 10,
     marginBottom: 0,
