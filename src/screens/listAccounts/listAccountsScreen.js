@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { FlatList, View, Image, Text, TouchableWithoutFeedback } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './listAccountsStyles'
 import { connect } from 'react-redux'
-import { setCurrentAccount } from './../../redux/actions/accounts'
+import md5 from 'md5'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import styles from './listAccountsStyles'
+import { setCurrentAccount } from './../../redux/actions/accounts'
 
 class ListAccounts extends Component{
   constructor(props){
@@ -16,9 +17,14 @@ class ListAccounts extends Component{
     this.props.navigation.navigate('Wallet')
   }
 
+  haveData () {
+    console.log(Array.isArray(this.props.listAccounts) && this.props.listAccounts.length==0)
+
+  }
+
   render(){
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
 
         <View style={styles.containerChain}>
           <View style={styles.containerNameChain}>
@@ -30,7 +36,11 @@ class ListAccounts extends Component{
 
         <FlatList
           data={this.props.listAccounts}
-          keyExtractor={(item, index) => item.account}
+          contentContainerStyle={
+            Array.isArray(this.props.listAccounts) && this.props.listAccounts==0 ?
+            styles.emptyAccounts : {}
+          }
+          keyExtractor={(item) => md5(item.account)}
           renderItem={({item}) =>
             <TouchableWithoutFeedback onPress={() => this.setAccount(item.account)}>
               <View style={styles.containerAccount}>
@@ -40,6 +50,12 @@ class ListAccounts extends Component{
                 </View>
               </View>
             </TouchableWithoutFeedback>
+          }
+          ListEmptyComponent={() =>
+            <View>
+              <MaterialCommunityIcons name="account-off" color="#212529" size={120} />
+              <Text> Not have accounts </Text>
+            </View>
           }
         />
 

@@ -36,5 +36,10 @@ export default StyleSheet.create({
     flex: 1,
     color: "#212529",
     fontWeight: "bold"
+  },
+  emptyAccounts: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   }
 })
