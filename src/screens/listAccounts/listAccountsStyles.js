@@ -40,6 +40,13 @@ export default StyleSheet.create({
   emptyAccounts: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    margin: 10,
+    backgroundColor: "#D5D5D5",
+    marginBottom: 0,
+    paddingVertical: 15,
+    borderColor: "#D5D5D5",
+    borderRadius: 10/2,
+    borderWidth: 1
   }
 })
