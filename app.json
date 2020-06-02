@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AuroraWallet",
-    "slug": "AuroraWallet",
+    "name": "Aurora Wallet",
+    "slug": "aurora-wallet",
     "platforms": [
       "ios",
       "android",
@@ -22,7 +22,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.auroradev.wallet"
+    },
+    "android": {
+      "package": "com.auroradev.wallet"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

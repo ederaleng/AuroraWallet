@@ -27,7 +27,10 @@ class ListAccounts extends Component{
                 <Image style={styles.iconChain} source={require('./../../assets/chain/hive.png')} />
                 <Text style={{ marginLeft: 6 }} > Hive accounts </Text>
               </View>
-              <MaterialCommunityIcons name="account-plus" color="#212529" size={25} />
+              <MaterialCommunityIcons
+                onPress={() => this.props.navigation.navigate('AddAccounts')}
+                name="account-plus" color="#212529" size={25}
+              />
             </View>
 
 
