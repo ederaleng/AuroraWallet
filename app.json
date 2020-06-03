@@ -1,33 +1,4 @@
 {
-  "expo": {
-    "name": "Aurora Wallet",
-    "slug": "aurora-wallet",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/app/icon.png",
-    "splash": {
-      "image": "./src/assets/app/icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.auroradev.wallet"
-    },
-    "android": {
-      "package": "com.auroradev.wallet"
-    },
-    "entryPoint": "node_modules/expo/AppEntry.js"
-  }
+  "name": "AuroraWallet",
+  "displayName": "AuroraWallet"
 }

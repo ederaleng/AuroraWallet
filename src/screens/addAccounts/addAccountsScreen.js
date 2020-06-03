@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styles from './addAccountsStyles'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { debounce } from 'lodash'
-import hivejs from '@hiveio/hive-js';
+import dhive from '@hiveio/dhive';
 
 class AddAccounts extends Component{
   constructor(props){
