@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image, Text, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Icon } from 'native-base'
 import styles from './listAccountsStyles'
 import { setCurrentAccount } from './../../redux/actions/accounts'
 
@@ -27,9 +27,11 @@ class ListAccounts extends Component{
                 <Image style={styles.iconChain} source={require('./../../assets/chain/hive.png')} />
                 <Text style={{ marginLeft: 6 }} > Hive accounts </Text>
               </View>
-              <MaterialCommunityIcons
+              <Icon
                 onPress={() => this.props.navigation.navigate('AddAccounts')}
-                name="account-plus" color="#212529" size={25}
+                type='MaterialCommunityIcons'
+                name="account-plus"
+                style={{ fontSize: 25, color: "#212529" }}
               />
             </View>
 
@@ -48,7 +50,12 @@ class ListAccounts extends Component{
               ))
               :
               <View style={styles.emptyAccounts}>
-                <MaterialCommunityIcons name="account-off" color="#212529" size={30} />
+                <Icon
+                  onPress={() => this.props.navigation.navigate('AddAccounts')}
+                  type='MaterialCommunityIcons'
+                  name="account-off"
+                  style={{ fontSize: 30, color: "#212529" }}
+                />
                 <Text style={{ color: "#212529" }}> You don't have accounts </Text>
               </View>
             }

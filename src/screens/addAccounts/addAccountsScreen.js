@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View, Image, Text, TextInput } from 'react-native'
+import { View, Image, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import styles from './addAccountsStyles'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { debounce } from 'lodash'
-import dhive from '@hiveio/dhive';
 
 class AddAccounts extends Component{
   constructor(props){

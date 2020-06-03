@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TAB_BAR } from './../../constants/StyleNavigation'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Icon } from 'native-base'
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ class Wallet extends Component{
           component={accounts}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="account-group-outline" color={color} size={size} />
+              <Icon type='MaterialCommunityIcons' name="account-group-outline" style={{ fontSize: size, color: color }} />
             )
           }}
         />
@@ -29,7 +29,7 @@ class Wallet extends Component{
           component={explorer}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="link-variant" color={color} size={size} />
+              <Icon type='MaterialCommunityIcons' name="link-variant" style={{ fontSize: size, color: color }} />
             )
           }}
         />
@@ -38,7 +38,7 @@ class Wallet extends Component{
           component={settings}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="settings-outline" color={color} size={size} />
+              <Icon type='MaterialCommunityIcons' name="settings-outline" style={{ fontSize: size, color: color }} />
             )
           }}
         />
