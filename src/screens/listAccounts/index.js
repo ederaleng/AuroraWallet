@@ -1,3 +1,3 @@
-import listAccounts from './listAccountsScreen'
+import listAccounts from './screen/listAccountsScreen'
 
 export default listAccounts

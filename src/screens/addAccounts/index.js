@@ -1,3 +1,3 @@
-import AddAccounts from './addAccountsScreen'
+import AddAccounts from './screen/addAccountsScreen'
 
 export default AddAccounts

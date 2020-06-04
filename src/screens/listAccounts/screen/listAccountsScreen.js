@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux'
 import { Icon } from 'native-base'
 import styles from './listAccountsStyles'
-import { setCurrentAccount } from './../../redux/actions/accounts'
+import { setCurrentAccount } from './../../../redux/actions/accounts'
 
 class ListAccounts extends Component{
   constructor(props){
@@ -24,7 +24,7 @@ class ListAccounts extends Component{
 
             <View style={styles.containerChain}>
               <View style={styles.containerNameChain}>
-                <Image style={styles.iconChain} source={require('./../../assets/chain/hive.png')} />
+                <Image style={styles.iconChain} source={require('./../../../assets/chain/hive.png')} />
                 <Text style={{ marginLeft: 6 }} > Hive accounts </Text>
               </View>
               <Icon
