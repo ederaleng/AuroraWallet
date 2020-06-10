@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Input, Icon, Item } from 'native-base'
+import { Input, Icon, Item, Button } from 'native-base'
 import { debounce } from 'lodash'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { getAccount } from './../../../helpers/hive/client'
@@ -12,15 +12,9 @@ class InputPermission extends Component{
   constructor (props) {
     super(props)
     this.state = {
+      username: null,
       account: null,
-      chain: null,
-      keys: {
-        active: "",
-        posting: "",
-        memo: ""
-      }
     }
-    this.account = null
     
     this.handleChangeUsername = debounce(this.onUpdateUssername.bind(this), 500);
     this.handleChangeKey = this.onUpdateKey.bind(this)
@@ -29,12 +23,11 @@ class InputPermission extends Component{
   async onUpdateUssername(name) {
     let username = name.toLowerCase().replace(/\s/g, '')
     try {
-      this.account = await getAccount(username)
-      if(this.account) {
-        return this.setState({ account: username })
+      let account = await getAccount(username)
+      if(account) {
+        return this.setState({ account, username })
       }
     } catch (error) {
-      this.account = null
     }
     this.setState({ account: null });
   }
@@ -44,13 +37,13 @@ class InputPermission extends Component{
   }
   
   render() {
-    let { account } = this.state
-    console.log(this.account)
+    let { account, username } = this.state
+    let disabeldButton = account
     return (
       <KeyboardAwareScrollView>
         <View style={styles.containerFull}>
           <Text style={styles.textOption}> Import Permission </Text>
-          { Username(account) }
+          { Username(username) }
 
           <Item style={styles.textInput}>
             <Input
@@ -75,6 +68,16 @@ class InputPermission extends Component{
             <Input placeholder='Memo'/>
             <Icon active type='MaterialCommunityIcons' name='qrcode-scan' />
           </Item>
+
+
+          <Button
+            full
+            style={{ ...styles.button, backgroundColor: (disabeldButton ? "#E31337" : "#626569") }}
+            onPress={() => this.addAccount()}
+            disabled={!disabeldButton}
+          >
+            <Text style={styles.buttonText}> Add account </Text>
+          </Button>
 
         </View>
       </KeyboardAwareScrollView>
