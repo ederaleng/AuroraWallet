@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { Input, Icon, Item } from 'native-base'
 import { debounce } from 'lodash'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { getAccount } from './../../../helpers/hive/client'
 // components
 import Username from './username'
 
@@ -17,33 +20,64 @@ class InputPermission extends Component{
         memo: ""
       }
     }
+    this.account = null
+    
     this.handleChangeUsername = debounce(this.onUpdateUssername.bind(this), 500);
-    this.handleChangePassword = this.onUpdatePassword.bind(this)
+    this.handleChangeKey = this.onUpdateKey.bind(this)
   }
 
-  onUpdateUssername(name) {
-    let username = name.toLowerCase()
-    this.setState({ account: username })
+  async onUpdateUssername(name) {
+    let username = name.toLowerCase().replace(/\s/g, '')
+    try {
+      this.account = await getAccount(username)
+      if(this.account) {
+        return this.setState({ account: username })
+      }
+    } catch (error) {
+      this.account = null
+    }
+    this.setState({ account: null });
   }
 
-  onUpdatePassword(password) {
+  onUpdateKey(permission, key) { // Active, P53m....
 
   }
   
   render() {
     let { account } = this.state
+    console.log(this.account)
     return (
-      <View style={styles.containerFull}>
-        <Text style={styles.textOption}> Import Permission </Text>
-        { Username(account) }
-        <TextInput
-          placeholderTextColor="#4D4D4D"
-          placeholder="Username"
-          style={styles.textInput}
-          autoCapitalize='none'
-          onChangeText={(value)=> this.handleChangeUsername(value)}
-        />
-      </View>
+      <KeyboardAwareScrollView>
+        <View style={styles.containerFull}>
+          <Text style={styles.textOption}> Import Permission </Text>
+          { Username(account) }
+
+          <Item style={styles.textInput}>
+            <Input
+              placeholderTextColor="#4D4D4D"
+              placeholder="Username"
+              autoCapitalize='none'
+              onChangeText={(value)=> this.handleChangeUsername(value)}
+            />
+          </Item>
+
+          <Item style={styles.textInput}>
+            <Input placeholder='Active'/>
+            <Icon active type='MaterialCommunityIcons' name='qrcode-scan' />
+          </Item>
+
+          <Item style={styles.textInput}>
+            <Input placeholder='Posting'/>
+            <Icon active type='MaterialCommunityIcons' name='qrcode-scan' />
+          </Item>
+
+          <Item style={styles.textInput}>
+            <Input placeholder='Memo'/>
+            <Icon active type='MaterialCommunityIcons' name='qrcode-scan' />
+          </Item>
+
+        </View>
+      </KeyboardAwareScrollView>
     )
   }
 }

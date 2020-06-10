@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { Item, Input } from 'native-base'
 import { connect } from 'react-redux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { debounce } from 'lodash'
+import { getAccount } from './../../../helpers/hive/client'
 // components
 import Username from './username'
 
@@ -17,13 +20,23 @@ class InputPassword extends Component {
         memo: ""
       }
     }
+    this.account = null
+
     this.handleChangeUsername = debounce(this.onUpdateUssername.bind(this), 500);
     this.handleChangePassword = this.onUpdatePassword.bind(this)
   }
 
-  onUpdateUssername(name) {
-    let username = name.toLowerCase()
-    this.setState({ account: username })
+  async onUpdateUssername(name) {
+    let username = name.toLowerCase().replace(/\s/g, '')
+    try {
+      this.account = await getAccount(username)
+      if(this.account) {
+        return this.setState({ account: username })
+      }
+    } catch (error) {
+      this.account = null
+    }
+    this.setState({ account: null });
   }
 
   onUpdatePassword(password) {
@@ -33,23 +46,31 @@ class InputPassword extends Component {
   render () {
     let { account } = this.state
     return (
-      <View style={styles.containerFull}>
-        <Text style={styles.textOption}> Import Password </Text>
-        { Username(account) }
-        <TextInput
-          placeholderTextColor="#4D4D4D"
-          placeholder="Username"
-          style={styles.textInput}
-          autoCapitalize='none'
-          onChangeText={(value)=> this.handleChangeUsername(value)}
-        />
-        <TextInput
-          placeholderTextColor="#4D4D4D"
-          placeholder="Password"
-          style={styles.textInput}
-          onChangeText={(value)=> this.handleChangePassword(value)}
-        />
-      </View>
+      <KeyboardAwareScrollView>
+        <View style={styles.containerFull}>
+          <Text style={styles.textOption}> Import Password </Text>
+          { Username(account) }
+
+          <Item style={styles.textInput}>
+            <Input
+              placeholderTextColor="#4D4D4D"
+              placeholder="Username"
+              autoCapitalize='none'
+              onChangeText={(value)=> this.handleChangeUsername(value)}
+            />
+          </Item>
+
+          <Item style={styles.textInput}>
+            <Input
+              secureTextEntry={true}
+              placeholderTextColor="#4D4D4D"
+              placeholder="Password"
+              onChangeText={(value)=> this.handleChangePassword(value)}
+            />
+          </Item>
+
+        </View>
+      </KeyboardAwareScrollView>
     )
   }
 }

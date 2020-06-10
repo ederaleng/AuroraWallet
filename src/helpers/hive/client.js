@@ -12,23 +12,13 @@ const nodes = [
 
 export let client = new Client(nodes);
 
-export const getDynamicGlobalProperties = () => client.database.getDynamicGlobalProperties();
-
-export const getRewardFund = () => client.database.call('get_reward_fund', ['post']);
-
-export const getFeedHistory = async () => {
-  try {
-    const feedHistory = await client.database.call('get_feed_history');
-    return feedHistory;
-  } catch (error) {
-    return error;
-  }
-};
+export const getDynamicGlobalProperties = async () => await client.database.getDynamicGlobalProperties();
 
 export const getAccount = async (user) => {
   try {
-    const account = client.database.getAccounts([user]);
-    return account
+    if(typeof user !== 'string') return undefined
+    const account = await client.database.getAccounts([user]);
+    return account[0]
   } catch (error) {
     return error
   }
